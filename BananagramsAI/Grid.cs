@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,41 +7,38 @@ using System.Threading.Tasks;
 
 namespace BananagramsAI {
     class Grid {
-        private Dictionary<Point, char> tiles;
-
-        public Grid() {
-            tiles = new Dictionary<Point, char>();
-        }
-
-        public List<Hook> FindHooks() {
-            List<Hook> hooks = new List<Hook>();
-
-            foreach (KeyValuePair<Point, char> tile in tiles) {
-                Point coordinates = tile.Key;
-
-                if (!tiles.ContainsKey(coordinates - new Point(1, 0)) && !tiles.ContainsKey(coordinates + new Point(1, 0))) {
-                    hooks.Add(new Hook(tiles[coordinates], new WordPlacement(coordinates, WordPlacement.Orientation.Horizontal)));
-                } else if (!tiles.ContainsKey(coordinates - new Point(0, 1)) && !tiles.ContainsKey(coordinates + new Point(0, 1))) {
-                    hooks.Add(new Hook(tiles[coordinates], new WordPlacement(coordinates, WordPlacement.Orientation.Vertical)));
-                }
-            }
-
-            return hooks;
-        }
-
-        public void PlaceWord(string word, int charIndex, WordPlacement placement) {
-            Point direction;
-            if (placement.orientation == WordPlacement.Orientation.Horizontal) {
-                direction = new Point(1, 0);
+        Dictionary<int, SortedList<int, char>> rows = new Dictionary<int, SortedList<int, char>>();
+        Dictionary<int, SortedList<int, char>> columns = new Dictionary<int, SortedList<int, char>>();        
+        
+        string GenerateLineRegexFrom(int lineIndex, bool column, int start) {
+            SortedList<int, char> line;
+            if (column) {
+                line = columns[lineIndex];
             } else {
-                direction = new Point(0, 1);
+                line = rows[lineIndex];
             }
 
-            Point start = placement.coordinates - charIndex * direction;
+            char anchor = line.Values[start];
 
-            for (int i = 0; i < word.Length; ++i) {
-                tiles[start + i * direction] = word[i];
+            if (start == line.Count - 1) {
+                return anchor + ".*$";
             }
+
+            int leeway = line.Keys[start + 1] - line.Keys[start] - 1;
+            string endEarly = String.Format(".{{0,{0}}}$", leeway - 1);
+            string fromNext = GenerateLineRegexFrom(line, start + 1);
+            string goOn = String.Format(".{{{0}}}({1})", leeway, fromNext);
+            return String.Format("{0}(({1})({2}))", anchor, goOn, endEarly);
         }
+
+        string GenerateLineRegexes(SortedList<int, char> line, int start, bool row) {
+             
+
+            // We start from the largest index.
+            for (int i = line.Count - 1; i >= 0; --i) {
+                line.Values[i] 
+            }
+            return "";
+        }  
     }
 }
