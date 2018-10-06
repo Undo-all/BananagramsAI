@@ -22,8 +22,8 @@ namespace BananagramsAI {
             Buffer.BlockCopy(bank.letters, 0, letters, 0, 26 * sizeof(int));
             //bank.Letters.CopyTo(Letters, 0);
         }
-
-        int this[char letter] {
+        
+        public int this[char letter] {
             get {
                 return letters[(int)letter - (int)'a'];
             }
@@ -47,7 +47,16 @@ namespace BananagramsAI {
             this[letter] -= 1;
         }
 
-        public bool IsAvailibleWord(string word) {
+        public bool TryTakeLetter(char letter) {
+            if (this[letter] == 0) {
+                return false;
+            } else {
+                this[letter] -= 1;
+                return true;
+            }
+        }
+
+        public bool IsAvailableWord(string word) {
             return word.All(c => HasLetter(c));
         }
 
@@ -55,6 +64,18 @@ namespace BananagramsAI {
             foreach (char c in word) {
                 TakeLetter(c);
             }
+        }
+
+        public bool TryTakeWord(string word) {
+            foreach (char letter in word) {
+                if (this[letter] == 0) {
+                    return false;
+                } else {
+                    this[letter] -= 1;
+                }
+            }
+
+            return true;
         }
 
         public double CalculateValue(List<string> words) {

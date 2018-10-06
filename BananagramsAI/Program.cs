@@ -33,30 +33,23 @@ namespace BananagramsAI {
         }
 
         public static void Main(string[] args) {
-            var query = from line in File.ReadLines(@"\Users\undoall\Downloads\words.txt")
+            var query = from line in File.ReadLines(@"\Users\undoall\source\repos\BananagramsAI\BananagramsAI\words.txt")
                         where line.All(c => "abcdefghijklmnopqrstuvwxyz".Contains(c))
                         select line;
             List<String> words = query.ToList();
 
-            /*foreach (string word in words.Take(2500)) {
-                Bank bank = new Bank(word.Select(c => (int)c).ToArray());
-                Console.WriteLine(bank.CalculateValue(words));
-            }*/
+            Bank bank = new Bank(Enumerable.Repeat(1, 26).ToArray());
 
-            List<string> regexes = new List<string>();
-            string test = "r_i_____k";
+            Grid grid = new Grid();
 
-            string gross = GenerateRegexStartingAt(test, 0);
-            Console.WriteLine(gross);
-            Regex regex = new Regex("^.*" + gross, RegexOptions.Compiled);
-            foreach (string match in words.Where(w => regex.IsMatch(w))) {
-                Console.WriteLine(match);
-            }
+            grid.PlaceWordAt("test", 0, 0, false);
+            grid.PlaceWordAt("tell", 0, 0, true);
+            grid.PlaceWordAt("ball", -3, 3, false);
 
-            SortedList<int, char> thing = new SortedList<int, char>();
-            thing.Add(7, 'a');
-            thing.Add(3, 'b');
-            Console.WriteLine(thing.Values[0]); 
+            PlayerState test = new PlayerState(bank, grid);
+            List<Grid> moves = test.FindMoves(words);
+
+            foreach (Grid move in moves) move.Display();
         }
     }
 }
