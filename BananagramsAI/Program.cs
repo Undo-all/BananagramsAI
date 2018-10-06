@@ -33,12 +33,15 @@ namespace BananagramsAI {
         }
 
         public static void Main(string[] args) {
-            var query = from line in File.ReadLines(@"\Users\undoall\source\repos\BananagramsAI\BananagramsAI\words.txt")
+            var query = from line in File.ReadLines(@"C:\Users\undoall\source\repos\BananagramsAI\BananagramsAI\words.txt")
                         where line.All(c => "abcdefghijklmnopqrstuvwxyz".Contains(c))
                         select line;
             List<String> words = query.ToList();
 
-            Bank bank = new Bank(Enumerable.Repeat(1, 26).ToArray());
+            Random rng = new Random();
+            int[] temp = new int[26];
+            for (int i = 0; i < 26; ++i) { temp[i] = rng.Next(0, 2); Console.WriteLine(((char)(i + 'a')) + ": " + temp[i]); }
+            Bank bank = new Bank(temp);
 
             Grid grid = new Grid();
 
