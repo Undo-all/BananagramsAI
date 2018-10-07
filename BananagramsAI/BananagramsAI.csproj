@@ -77,9 +77,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bank.cs" />
+    <Compile Include="Gaddag.cs" />
     <Compile Include="Grid.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Placement.cs" />
+    <Compile Include="PlacementRequirements.cs" />
     <Compile Include="PlayerState.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />

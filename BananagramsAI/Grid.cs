@@ -122,7 +122,7 @@ namespace BananagramsAI {
 
             string anchor = String.Format("{0}", line[start]);
 
-            if (!line.IsEmptyAt(start + 1)) { 
+            if (!line.IsEmptyAt(start + 1)) {
                 while (!line.IsEmptyAt(++start)) {
                     anchor = anchor + line[start];
                 }
@@ -134,12 +134,12 @@ namespace BananagramsAI {
 
             int next = -1;
             for (int i = start; i <= line.FrontIndex; ++i) {
-                if (!(neighbors[0].IsEmptyAt(i) && neighbors[1].IsEmptyAt(i))) {
-                    last = i + 1;
-                    return String.Format("{0}(?<1>.{{0,{1}}})$", anchor, i - start - 1);
-                } else if (!line.IsEmptyAt(i)) {
+                if (!line.IsEmptyAt(i)) {
                     next = i;
                     break;
+                } else if (!(neighbors[0].IsEmptyAt(i) && neighbors[1].IsEmptyAt(i))) {
+                    last = i + 1;
+                    return String.Format("{0}(?<1>.{{0,{1}}})$", anchor, i - start - 1);
                 }
             }
 
@@ -168,13 +168,13 @@ namespace BananagramsAI {
             string endEarly = String.Format("(?<1>.{{0,{0}}})$", leeway - 1);
             string fromNext = GenerateLineRegexFrom(lineIndex, next, column, out int whoCares);
             string goOn = String.Format("(?<1>.{{{0}}})({1})", leeway, fromNext);
-            return String.Format("{0}(({1})({2}))", anchor, goOn, endEarly);
+            return String.Format("{0}(({1})|({2}))", anchor, goOn, endEarly);
         }
 
-        public Dictionary<int, (Regex, int)> GenerateLineRegexes(int lineIndex, bool column) {
+        public Dictionary<int, PlacementRequirements> GenerateLineRegexes(int lineIndex, bool column) {
             Dictionary<int, Line> axis = (column ? columns : rows);
             Line line = axis[lineIndex];
-            Dictionary<int, Regex> regexes = new Dictionary<int, Regex>();
+            Dictionary<int, PlacementRequirements> requirements = new Dictionary<int, PlacementRequirements>();
 
             Line[] neighbors = new Line[2];
             neighbors[0] = GetLineLazy(axis, lineIndex - 1);
@@ -194,23 +194,22 @@ namespace BananagramsAI {
 
             for (int i = line.BackIndex; i <= line.FrontIndex; ++i) {
                 if (!line.IsEmptyAt(i)) {
-
-                    string prefix;
+                    int backLeeway;
                     if (last == int.MinValue) {
-                        prefix = "(?<1>^.*)";
-                    } else { 
-                        prefix = String.Format("(?<1>^.{{0,{0}}})", i - last);
+                        backLeeway = int.MaxValue;
+                    } else {
+                        backLeeway = i - last;
                     }
 
                     string regexFrom = GenerateLineRegexFrom(lineIndex, i, column, out last);
-                    string regexString = prefix + regexFrom;
-                    Regex regex = new Regex(regexString, RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.ExplicitCapture);
-                    regexes[i] = regex;
+                    string regexString = regexFrom;
+                    Regex regex = new Regex(regexString, RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
+                    requirements[i] = new PlacementRequirements(regex, backLeeway);
                     i = last - 1;
                 }
             }
 
-            return regexes;
+            return requirements;
         }  
     }
 }

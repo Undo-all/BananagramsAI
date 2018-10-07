@@ -37,7 +37,7 @@ namespace BananagramsAI {
         }
 
         public static void Main(string[] args) {
-            var query = from line in File.ReadLines(@"C:\Users\undoall\source\repos\BananagramsAI\BananagramsAI\words.txt")
+            var query = from line in File.ReadLines(@"C:\Users\undoall\source\repos\BananagramsAI\BananagramsAI\shortwords.txt")
                         where line.All(c => "abcdefghijklmnopqrstuvwxyz".Contains(c))
                         select line;
             List<string> words = query.ToList();
@@ -85,7 +85,13 @@ namespace BananagramsAI {
             }
             */
 
-            /*
+            Random rng = new Random();
+            int[] temp = new int[26];
+            for (int i = 0; i < 21; ++i) temp[rng.Next(0, 26)] += 1;
+
+            Bank bank = new Bank(temp);
+            Grid grid = new Grid();
+
             PlayerState BestFirstSearch(PlayerState start) {
                 SimplePriorityQueue<SearchNode> queue = new SimplePriorityQueue<SearchNode>();
 
@@ -110,34 +116,32 @@ namespace BananagramsAI {
                     }
                 }
             }
-            */
-
-            Random rng = new Random();
-            int[] temp = Enumerable.Repeat(1, 26).ToArray();
-
-            Bank bank = new Bank(temp);
-            Grid grid = new Grid();
-
-            grid.PlaceWordAt("placed", 0, 0, false);
-            grid.PlaceWordAt("loft", 1, 0, true);
-            grid.PlaceWordAt("far", 1, 2, false);
+            
+            grid.PlaceWordAt("card", 0, 0, true);
+            grid.PlaceWordAt("done", 0, 3, false);
+            grid.PlaceWordAt("barn", 2, 0, true);
             grid.Display();
 
             PlayerState state = new PlayerState(bank, grid);
 
+            /*
             Stopwatch sw = new Stopwatch();
 
             sw.Start();
 
             for (int i = 0; i < 10; ++i) {
                 List<Placement> placements = state.FindPlacements(words);
-                //Console.WriteLine(placements[rng.Next(0, placements.Count)].Word);
+                Placement placement = placements[rng.Next(0, placements.Count)];
+                PlayerState after = new PlayerState(state);
+                Console.WriteLine(placements.Count);
+                after.PlaceWord(placement);
+                after.Grid.Display();
             }
 
             sw.Stop();
 
-            Console.WriteLine("Time elapsed: {0}", sw.Elapsed);
-            
+            Console.WriteLine("Time elapsed: {0}", sw.Elapsed);*/
+
             /*
             Console.Write("Bank: ");
             for (char c = 'a'; c <= 'z'; ++c) {
@@ -174,6 +178,58 @@ namespace BananagramsAI {
                 Console.WriteLine();
             }
             */
+
+            IEnumerable<string> FindMatching(Gaddag node, string str, int start) {
+                if (start == str.Length) {
+                    foreach (string word in node.FindAllWords()) {
+                        yield return word;
+                    }
+
+                    yield break;
+                }
+
+                List<string> fuck = new List<string>();
+                if (node.isEndOfWord) {
+                    yield return "";
+                }
+
+                if (str[start] == '_') {
+                    for (int i = 0; i < 27; ++i) { 
+                        if (node.children[i] != null) {
+                            var matching = FindMatching(node.children[i], str, start + 1);
+                            foreach (string match in matching) {
+                                fuck.Add((char)('a' + i) + match);
+                                yield return ((char)('a' + i) + match);
+                            }
+                        }
+                    }
+                } else {
+                    int index = str[start] - 'a';
+                    if (node.children[index] == null) {
+                        yield break;
+                    }
+
+                    var matches = FindMatching(node.children[index], str, start + 1);
+                    foreach (string match in matches) {
+                        fuck.Add(((char)(index + 'a')) + match);
+                        yield return (char)(index + 'a') + match;
+                    }
+                }
+            }
+
+            string test = "rd";
+
+            Gaddag tree = new Gaddag(false);
+           // tree.InsertWord("postcards");
+           // tree.FindAllWords().ForEach(w => Console.WriteLine(w));
+
+            foreach (string word in words) {
+                tree.InsertWord(word);
+            }
+
+            foreach (string match in FindMatching(tree, "t____r", 0)) {
+                Console.WriteLine(match);
+            }
         }
     }
 }

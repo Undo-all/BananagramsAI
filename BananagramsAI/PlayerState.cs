@@ -119,25 +119,30 @@ namespace BananagramsAI {
                 for (int i = start; i <= end; ++i) {
                     if (Grid.IsEmptyLine(i, vertical)) continue;
 
-                    Dictionary<int, Regex> regexes = Grid.GenerateLineRegexes(i, vertical);
-                    foreach (KeyValuePair<int, Regex> pair in regexes) {
-                        Regex regex = pair.Value;
+                    Dictionary<int, PlacementRequirements> requirements = Grid.GenerateLineRegexes(i, vertical);
+                    foreach (KeyValuePair<int, PlacementRequirements> pair in requirements) {
+                        PlacementRequirements required = pair.Value;
                         //Console.WriteLine(regex.ToString());
-                        var placable = words.Where(w => w.Length > 1 && regex.IsMatch(w));
+                        var placable = words.Where(w => w.Length > 1);
                         foreach (string word in placable) {
                             Bank after = new Bank(Bank);
 
-                            Match test = regex.Match(word);
-                            if (!test.Success) continue;
+                            Regex regex = required.regex;
+                            Match match = regex.Match(word);
+
+                            if (!match.Success) continue;
+                            int back = match.Index;
+                            if (back > required.backLeeway) continue;
                             
-                            CaptureCollection placed = test.Groups[1].Captures;
-
-                            if (placed.Count == 0 || (placed[0].Length == 0 && placed[1].Length == 0)) continue;
-
-                            Capture prefix = placed[0];
-                            int position = pair.Key - prefix.Length;
+                            CaptureCollection placed = match.Groups[1].Captures;
+                            if (back == 0 && placed[0].Length == 0) continue;
+                            
+                            int position = pair.Key - back;
 
                             bool isLegal = true;
+
+                            if (!after.TryTakeWord(word.Substring(0, back))) isLegal = false;
+
                             foreach (Capture capture in placed) {
                                 if (!after.TryTakeWord(capture.Value)) {
                                     isLegal = false;
