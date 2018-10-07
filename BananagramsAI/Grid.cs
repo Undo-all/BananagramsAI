@@ -35,11 +35,21 @@ namespace BananagramsAI {
                 return columns.Keys.Min();
             }
         }
+
+        public int RightmostColumnIndex {
+            get {
+                return columns.Keys.Max();
+            }
+        }
+
+        public bool IsEmpty() {
+            return rows.Values.All(row => row.IsEmpty());
+        }
         
         public void PlaceWordAt(string word, int x, int y, bool vertical) {
             int alongStart = (vertical ? y : x);
-            int acrossStart = (vertical ? x : y);
-            int acrossIndex = (vertical ? y : x);
+            int acrossStart = (vertical ? y : x);
+            int acrossIndex = (vertical ? x : y);
 
             Dictionary<int, Line> alongAxis = (vertical ? columns : rows);
             int alongIndex = (vertical ? x : y);
@@ -67,6 +77,8 @@ namespace BananagramsAI {
         }
 
         public void Display() {
+            if (IsEmpty()) return; 
+
             int leftmost = rows.Values.Select(line => line.BackIndex).Min();
 
             foreach (int index in rows.Keys.OrderBy(y => y)) {
@@ -124,7 +136,7 @@ namespace BananagramsAI {
             for (int i = start; i <= line.FrontIndex; ++i) {
                 if (!(neighbors[0].IsEmptyAt(i) && neighbors[1].IsEmptyAt(i))) {
                     last = i + 1;
-                    return String.Format("{0}(?<1>.{{0,{1}}})", anchor, i - start - 1);
+                    return String.Format("{0}(?<1>.{{0,{1}}})$", anchor, i - start - 1);
                 } else if (!line.IsEmptyAt(i)) {
                     next = i;
                     break;

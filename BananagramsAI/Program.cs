@@ -40,19 +40,37 @@ namespace BananagramsAI {
 
             Random rng = new Random();
             int[] temp = new int[26];
-            for (int i = 0; i < 26; ++i) { temp[i] = rng.Next(0, 2); Console.WriteLine(((char)(i + 'a')) + ": " + temp[i]); }
+            for (int i = 0; i < 21; ++i) {
+                temp[rng.Next(0, 26)] += 1;
+            }
+
+
             Bank bank = new Bank(temp);
 
             Grid grid = new Grid();
 
-            grid.PlaceWordAt("test", 0, 0, false);
-            grid.PlaceWordAt("tell", 0, 0, true);
-            grid.PlaceWordAt("ball", -3, 3, false);
+            PlayerState state = new PlayerState(bank, grid);
+            List<Placement> placements;
+            for (int i = 0; i < 20; ++i) {
+                Console.WriteLine();
+                placements = state.FindPlacements(words);
+                Console.Write("From " + placements.Count + " possible moves, placing: ");
 
-            PlayerState test = new PlayerState(bank, grid);
-            List<Grid> moves = test.FindMoves(words);
+                int maxLength = placements.Max(w => w.word.Length);
+                var longs = placements.Where(w => w.word.Length == maxLength).ToList();
+                Placement placement = longs[rng.Next(0, longs.Count)];
 
-            foreach (Grid move in moves) move.Display();
+
+                Console.WriteLine(placement.word);
+                state.PlaceWord(placement);
+                state.Grid.Display();
+                for (char c = 'a'; c <= 'z'; ++c) {
+                    if (state.Bank.HasLetter(c)) {
+                        Console.Write(c);
+                    }
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

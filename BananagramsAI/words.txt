@@ -238,7 +238,6 @@
 -rrhagia
 -rrhoea
 -ry
--s
 -scope
 -sepalous
 -ship
@@ -289,7 +288,6 @@ A number 1
 A-1
 A-bomb
 A-frame
-A.
 A.A.A.
 A.B.
 A.B.A.
@@ -315,33 +313,22 @@ A.U.C.
 A.V.
 A.W.O.L.
 A/O
-A1
-AA
 AAM
-AB
 ABC
 ABM
-AC
 AC/DC
 ACTH
-AD
 ADP
 AEC
-AF
 AFB
 AFC
 AFL-CIO
 AGC
 AHQ
-AL
 ALGOL
-AM
 AMP
 ANZUS
-AP
 APC
-AQ
-AS
 ASSR
 ATC
 ATP
@@ -357,7 +344,6 @@ Aarhus
 Aaron
 Aaron's rod
 Aaronic
-Ab
 Abadan
 Abaddon
 Abba
@@ -389,7 +375,6 @@ Abukir
 Abydos
 Abyssinia
 Abyssinian cat
-Ac
 Acadia
 Acadian
 Acapulco
@@ -507,7 +492,6 @@ Afro-
 Afro-American
 Afro-Asian
 Afro-Asiatic
-Ag
 Aga Khan IV
 Agadir
 Agamemnon
@@ -557,7 +541,6 @@ Akkerman
 Akmolinsk
 Akron
 Aksum
-Al
 Al Hufuf
 Al Sirat
 Ala.
@@ -709,7 +692,6 @@ Altona
 Alundum
 Alva
 Alzheimer's disease
-Am
 Am.
 Amagasaki
 Amalekite
@@ -776,7 +758,6 @@ Amu Darya
 Amundsen
 Amur
 Amytal
-An
 Anabaptist
 Anacreon
 Anacreontic
@@ -974,7 +955,6 @@ Aquila
 Aquileia
 Aquinas
 Aquitaine
-Ar
 Ar Rimal
 Ar.
 Ara
@@ -1120,7 +1100,6 @@ Arundel
 Aruwimi
 Aryan
 Aryanize
-As
 Asben
 Ascanius
 Ascension
@@ -1187,7 +1166,6 @@ Astyanax
 Asur
 Aswan
 Asyut
-At
 Atabrine
 Atacama Desert
 Atahualpa
@@ -1300,7 +1278,6 @@ Autoharp
 Autolycus
 Auvergne
 Aux Cayes
-Av
 Avalokitesvara
 Avalon
 Avar
@@ -1349,7 +1326,6 @@ B battery
 B complex
 B horizon
 B'nai B'rith
-B-
 B.A.
 B.A.A.
 B.Arch.
@@ -1386,10 +1362,7 @@ B/P
 B/S
 BAL
 BAR
-BB
 BCD
-BM
-BS
 BX cable
 Ba
 Baal
@@ -1902,7 +1875,6 @@ Bitter Lakes
 Biysk
 Bizerte
 Bizet
-Bk
 Black
 Black Country
 Black Death
@@ -2110,7 +2082,6 @@ Boyne
 Boz
 Bozcaada
 Bozen
-Br
 Br.
 Brabant
 Bracknell
@@ -2401,7 +2372,6 @@ C
 C battery
 C clef
 C horizon
-C.
 C. of S.
 C.A.
 C.A.F.
@@ -2430,18 +2400,12 @@ CAB
 CAP
 CARE
 CAT
-CB
 CENTO
 CIA
 CNS
-CO
 COBOL
 CORE
-CP
-CQ
-CR
 CRT
-CW
 Ca
 Caaba
 Cabanatuan
@@ -2778,8 +2742,6 @@ Cayenne
 Cayes
 Cayman Islands
 Cayuga
-Cb
-Cd
 Cdr.
 Ce
 Cecil
@@ -2832,7 +2794,6 @@ Ceuta
 Ceylon
 Ceylon moss
 Ceyx
-Cf
 Ch.B.
 Ch.E.
 Chablis
@@ -3128,7 +3089,6 @@ Cistercian
 City of God
 Ciudad Trujillo
 Ciudad Victoria
-Cl
 Clackmannan
 Clactonian
 Clare
@@ -3171,7 +3131,6 @@ Clyde
 Clydebank
 Clydesdale
 Clytemnestra
-Cm
 Cmdr.
 Cnidus
 Cnossus
@@ -3420,7 +3379,6 @@ Cowley
 Cowper
 Cox
 Coxsackie virus
-Cr
 Crab Nebula
 Crabbe
 Cracow
@@ -3477,7 +3435,6 @@ Croydon
 Cruikshank
 Crutched Friar
 Crux
-Cs
 Ctesiphon
 Cu
 Cub
@@ -3557,7 +3514,6 @@ D'Annunzio
 D'Entrecasteaux Islands
 D'Oyly Carte
 D-day
-D.
 D.A.
 D.B.E.
 D.C.
@@ -3587,16 +3543,12 @@ D/F
 D/L
 D/O
 D/W
-DC
-DD
 DDT
 DEW line
-DM
 DMSO
 DMZ
 DNA
 DOVAP
-DX
 Dacca
 Dachau
 Dacia
@@ -3990,7 +3942,6 @@ Down's syndrome
 Downing Street
 Dowson
 Doyle
-Dr
 Dr.
 Draco
 Draconian
@@ -4120,7 +4071,6 @@ E
 E layer
 E region
 E-boat
-E.
 E.E.
 E.E. & M.P.
 E.I.
@@ -4136,7 +4086,6 @@ EEG
 EFTA
 EHF
 EKG
-EP
 EPA
 ERS
 ESE
@@ -4416,7 +4365,6 @@ Epsom
 Epstein
 Equatorial Guinea
 Equuleus
-Er
 Erasmus
 Erastian
 Erastianism
@@ -4448,7 +4396,6 @@ Erskine
 Erymanthian boar
 Erymanthus
 Erzurum
-Es
 Esau
 Esbjerg
 Escaut
@@ -4480,7 +4427,6 @@ Esthonia
 Estienne
 Estonian
 Estremadura
-Et
 Eteocles
 Eth.
 Ethelbert
@@ -4571,7 +4517,6 @@ F.I.
 F.O.
 F.P.
 F.Z.S.
-FA
 FAA
 FAO
 FBI
@@ -4579,7 +4524,6 @@ FCA
 FCC
 FDA
 FDIC
-FM
 FORTRAN
 FPC
 FSH
@@ -4773,7 +4717,6 @@ Floyd
 Flushing
 Fly River
 Flying Dutchman
-Fm
 Foch
 Foggia
 Fokine
@@ -4829,7 +4772,6 @@ Fowler
 Fowliang
 Fox
 Foxe
-Fr
 Fr.
 Fra
 Fragonard
@@ -5001,7 +4943,6 @@ G clef
 G-man
 G-string
 G-suit
-G.
 G.A.
 G.A.R.
 G.B.
@@ -5021,12 +4962,9 @@ G.S.
 GAO
 GATT
 GCA
-GI
 GI Joe
 GMT
 GPO
-GQ
-GT
 Ga
 Ga.
 Gabar
@@ -5152,7 +5090,6 @@ Gayomart
 Gaza
 Gaza Strip
 Gaziantep
-Gd
 Gdynia
 Ge
 GeV
@@ -5660,9 +5597,6 @@ H.R.H.
 H.S.H.
 H.S.M.
 H.V.
-HE
-HF
-HG
 Haakon VII
 Haarlem
 Hab.
@@ -5834,7 +5768,6 @@ Haworth
 Hawthorne
 Haydn
 Hazlitt
-Hb
 He
 Hearst
 Heath
@@ -6005,8 +5938,6 @@ Heyduck
 Heyerdahl
 Heywood
 Hezekiah
-Hf
-Hg
 Hialeah
 Hiawatha
 Hibernia
@@ -6291,7 +6222,6 @@ Hyperborean
 Hyperion
 Hypnos
 Hyrcania
-Hz
 I
 I Ching
 I'm
@@ -6311,16 +6241,12 @@ I.W.W.
 IAEA
 IAS
 IATA
-IC
 ICAO
 ICBM
 ICJ
 ICSH
-ID
 ID card
 IDA
-IE
-IF
 IFC
 IHS
 IJssel
@@ -6330,8 +6256,6 @@ IMCO
 IMF
 IOU
 IPA
-IQ
-IR
 IRBM
 IRS
 ITU
@@ -6396,7 +6320,6 @@ Immelmann turn
 Imp.
 Imperial
 Imphal
-In
 Inanna
 Inauguration Day
 Inc.
@@ -6518,7 +6441,6 @@ Ipswich
 Iqbal
 Iquique
 Iquitos
-Ir
 Ir.
 Iran
 Iran.
@@ -6634,7 +6556,6 @@ Izhevsk
 Izmir
 Iztaccihuatl
 J
-J.
 J.A.
 J.A.G.
 J.C.
@@ -6645,11 +6566,8 @@ J.D.
 J.P.
 J.S.D.
 J.W.V.
-JA
-JD
 JHVH
 JJ.
-JP
 Ja.
 Jabalpur
 Jack Frost
@@ -6958,7 +6876,6 @@ Jylland
 K
 K ration
 K-meson
-K.
 K.B.E.
 K.C.B.
 K.C.M.G.
@@ -6969,14 +6886,10 @@ K.O.
 K.P.
 K.T.
 K.V.
-K2
-KB
 KBP
 KKt
 KKtP
 KNP
-KP
-KR
 KRP
 Ka
 Kaaba
@@ -7305,7 +7218,6 @@ Kovrov
 Koweit
 Kowloon
 Kozhikode
-Kr
 Kra
 Krafft-Ebing
 Krak
@@ -7332,7 +7244,6 @@ Kruger
 Krugersdorp
 Krupp
 Kshatriya
-Kt
 Kt.
 Ku Klux Klan
 Kuala Lumpur
@@ -7391,7 +7302,6 @@ Kyushu
 Kyzyl Kum
 L
 L-dopa
-L.
 L.A.
 L.C.L.
 L.D.S.
@@ -7400,15 +7310,10 @@ L.P.
 L.S.D.
 L/C
 LCM
-LD
 LEM
-LG
-LH
 LL.B.
 LL.D.
 LL.M.
-LM
-LP
 LSD
 LXX
 La
@@ -8035,7 +7940,6 @@ Luxor
 Luzern
 Luzon
 Lvov
-Lw
 Lyallpur
 Lyautey
 Lycaon
@@ -8071,7 +7975,6 @@ M
 M roof
 M'-
 M-16
-M.
 M.A.
 M.Arch.
 M.B.
@@ -8088,20 +7991,12 @@ M.P.
 M.P.S.
 M.S.
 M.Sc.
-MA
 MATS
-MC
-MD
-ME
-MF
 MHD
 MM.
 MRA
-MS
 MS.
 MSG
-MT
-MV
 MVD
 Mab
 Mabuse
@@ -8500,7 +8395,6 @@ McCormick
 McCoy
 McCullers
 McKinley
-Md
 Md.
 Me
 Me.
@@ -8629,7 +8523,6 @@ Mexico
 Mexico City
 Meyerbeer
 Meyerhof
-Mg
 Miami
 Mic.
 Micah
@@ -8742,7 +8635,6 @@ Mixtec
 Mizar
 Mlle
 Mme
-Mn
 Mnemosyne
 Mo
 Mo.
@@ -8963,7 +8855,6 @@ Mussulman
 Mustafa Kemal
 Mutazilite
 Muttra
-Mv
 Mweru
 Mycenae
 Mycenaean
@@ -8974,7 +8865,6 @@ Myron
 Mysia
 Mytilene
 N
-N.
 N.A.
 N.B.
 N.C.
@@ -8995,18 +8885,12 @@ NACA
 NAD
 NASA
 NATO
-NB
-NE
-NF
 NGC
 NKVD
-NL
 NMR
 NNE
 NNW
-NS
 NSF
-NW
 Na
 Na-Dene
 Nabataean
@@ -9091,8 +8975,6 @@ Nazareth
 Nazarite
 Naze
 Nazi
-Nb
-Nd
 Ne
 Ne Win
 Neanderthal
@@ -9369,7 +9251,6 @@ Novgorod
 Novocaine
 Novokuznetsk
 Novosibirsk
-Np
 Nubia
 Nubian
 Nubian Desert
@@ -9396,7 +9277,6 @@ O'Casey
 O'Connor
 O'Higgins
 O'Neill
-O.
 O. Henry
 O.B.
 O.C.
@@ -9415,20 +9295,15 @@ OAO
 OAS
 OCAM
 OCD
-OD
-OE
 OECD
 OEO
-OF
 OFris
 OHG
-OP
 OPEC
 Oahu
 Oakland
 Oates
 Oaxaca
-Ob
 Obad.
 Obadiah
 Oberammergau
@@ -9533,7 +9408,6 @@ Olympic
 Olympic Games
 Olympic Mountains
 Olympus
-Om
 Om.
 Omaha
 Oman
@@ -9542,7 +9416,6 @@ Omdurman
 Ommiad
 Omphale
 Omsk
-On
 Onassis
 Onega
 Onions
@@ -9607,7 +9480,6 @@ Orthodox Judaism
 Oruro
 Orvieto
 Orwell
-Os
 Osage
 Osage orange
 Osborne
@@ -9659,7 +9531,6 @@ Ozalid
 Ozark Mountains
 Ozenfant
 P
-P.
 P.A.
 P.B.
 P.C.
@@ -9679,13 +9550,11 @@ P.T.
 P.T.O.
 P.W.D.
 P/C
-PA
 PA system
 PABA
 PGA
 POW
 PPI
-PR
 PVC
 Pa
 Pa.
@@ -9865,8 +9734,6 @@ Pavo
 Pax
 Pax Romana
 Paxton
-Pb
-Pd
 Peace Corps
 Peace River
 Peacock
@@ -9994,7 +9861,6 @@ Petropavlovsk
 Petrozavodsk
 Pforzheim
 Pg.
-Ph
 Phaedra
 Phaedrus
 Phanerozoic
@@ -10157,7 +10023,6 @@ Plutonian
 Plutus
 Plymouth
 Plymouth Rock
-Pm
 Po
 Pocahontas
 Podgorica
@@ -10267,7 +10132,6 @@ Powys
 Poyang
 Pozsony
 Pozzuoli
-Pr
 Pr.
 Praetorian Guard
 Prague
@@ -10348,7 +10212,6 @@ Psalter
 Pskov
 Psyche
 Psyche knot
-Pt
 Ptah
 Ptolemaeus
 Ptolemaic
@@ -10415,15 +10278,12 @@ Pythian
 Python
 Pyxis
 Q
-Q.
 Q.C.
 Q.E.D.
 Q.E.F.
 Q.F.
 QKtP
 QNP
-QP
-QR
 Qatar
 Qq.
 Quadragesima
@@ -10471,7 +10331,6 @@ Qumran
 Quonset hut
 R
 R and R
-R.
 R.A.
 R.A.A.F.
 R.A.M.
@@ -10490,12 +10349,9 @@ R.N.
 R.Q.
 R.R.
 R.S.V.P.
-RA
 RAF
 RAM
 RATO
-RF
-RM
 RNA
 ROK
 RSFSR
@@ -10554,7 +10410,6 @@ Ravenna
 Rawalpindi
 Ray
 Rayleigh
-Rb
 Rd.
 Re
 Re.
@@ -10629,7 +10484,6 @@ Reykjavik
 Reynard
 Reynaud
 Reynolds
-Rh
 Rh factor
 Rh-negative
 Rh-positive
@@ -10704,7 +10558,6 @@ Riviera
 Riyadh
 Rizal
 Rizzio
-Rn
 Roanoke Island
 Rob Roy
 Robbe-Grillet
@@ -10893,7 +10746,6 @@ Ryeland
 Ryswick
 Ryurik
 S
-S.
 S. Dak.
 S. of Sol.
 S.D.
@@ -10907,10 +10759,7 @@ S.W.A.
 S.W.G.
 SAM
 SAT
-SD
-SE
 SEATO
-SG
 SHA
 SHAEF
 SHAPE
@@ -10918,14 +10767,11 @@ SHF
 SLR
 SOP
 SOS
-SP
-SS
 SSE
 SSM
 SSR
 SST
 SSW
-SW
 Saadi
 Saar
 Saarinen
@@ -11136,8 +10982,6 @@ Saxon
 Saxony
 Sayers
 Sazerac
-Sb
-Sc
 Scafell Pike
 Scaliger
 Scamander
@@ -11519,7 +11363,6 @@ Slovak
 Slovakia
 Slovene
 Slovenia
-Sm
 Smetana
 Smith
 Smithson
@@ -11529,7 +11372,6 @@ Smolensk
 Smollett
 Smuts
 Smyrna
-Sn
 Snake River
 Snell's law
 Sno-Cat
@@ -11696,7 +11538,6 @@ Sporades
 Springfield
 Springfield rifle
 Sq.
-Sr
 Sr.
 Sra.
 Srinagar
@@ -11913,11 +11754,8 @@ T-man
 T-shirt
 T.H.I.
 TAT
-TC
-TD
 TKO
 TNT
-TV
 TV dinner
 TVA
 Ta
@@ -12030,9 +11868,7 @@ Taverner
 Tawney
 Tay-Sachs disease
 Taylor
-Tb
 Tbilisi
-Tc
 Tchad
 Te
 Te Deum
@@ -12114,7 +11950,6 @@ Texas Rangers
 Texas fever
 Teyde
 Tezel
-Th
 Th.B.
 Th.D.
 Thackeray
@@ -12251,11 +12086,9 @@ Tiu
 Tiv
 Tivoli
 Tjirebon
-Tl
 Tlaxcala
 Tlemcen
 Tlingit
-Tm
 Tob.
 Tobey
 Tobit
@@ -12473,7 +12306,6 @@ U Thant
 U bolt
 U-boat
 U-turn
-U.
 U.A.R.
 U.C.
 U.K.
@@ -12484,7 +12316,6 @@ U.V.
 UAM
 UFO
 UHF
-UN
 UNESCO
 UNICEF
 UPI
@@ -12550,7 +12381,6 @@ Upper Silesia
 Upper Tunguska
 Upper Volta
 Uppsala
-Ur
 Ural-Altaic
 Uralian
 Uralic
@@ -12602,7 +12432,6 @@ V-J Day
 V-mail
 V-shaped
 V-type engine
-V.
 V. Rev.
 V.A.
 V.C.
@@ -12612,8 +12441,6 @@ V.R.
 V.W.
 VAR
 VAT
-VC
-VD
 VHF
 VIP
 VISTA
@@ -12838,7 +12665,6 @@ Vulpecula
 Vyatka
 Vyborg
 W
-W.
 W.A.
 W.C.
 W.C.T.U.
@@ -12932,7 +12758,6 @@ Waves
 Wayland
 Wayne
 Waziristan
-Wb
 Weald
 Webb
 Weber
@@ -13128,8 +12953,6 @@ Wyo.
 Wyoming
 X
 X chromosome
-XL
-XP
 Xanthippe
 Xanthus
 Xavier
@@ -13149,7 +12972,6 @@ Xt.
 Xuthus
 Y
 Y chromosome
-Y.
 Y.M.C.A.
 Y.M.H.A.
 Y.T.
@@ -13179,7 +13001,6 @@ Yarkand
 Yarmouth
 Yaroslavl
 Yawata
-Yb
 Yeisk
 Yellow River
 Yellowknife
@@ -13218,7 +13039,6 @@ Ypres
 Ypsilanti
 Yser
 Yseult
-Yt
 Yugo.
 Yugoslav
 Yugoslavia
@@ -13276,7 +13096,6 @@ Zionism
 Zipangu
 Ziska
 Zlatoust
-Zn
 Zoan
 Zollverein
 Zomba
@@ -13285,7 +13104,6 @@ Zoroaster
 Zoroastrian
 Zoroastrianism
 Zouave
-Zr
 Zsigmondy
 Zug
 Zuider Zee
@@ -21023,7 +20841,6 @@ byway
 byword
 c
 c'est la vie
-c.
 c.d.
 c.g.
 c.h.
@@ -22267,7 +22084,6 @@ cayenne pepper
 cayman
 cayuse
 cc.
-cd
 cd.
 cease
 cease-fire
@@ -23962,7 +23778,6 @@ clutter
 clypeate
 clypeus
 clyster
-cm
 cml.
 cnemis
 cnidoblast
@@ -27328,7 +27143,6 @@ czarism
 czarist
 d
 d.w.t.
-dB
 da Vinci
 da capo
 dab
@@ -28688,7 +28502,6 @@ dextrose
 dextrosinistral
 dextrous
 dey
-dg
 dharana
 dharma
 dharna
@@ -29779,7 +29592,6 @@ dk.
 dkl
 dlr.
 dlvy.
-dm
 do
 do away with
 do by
@@ -30219,7 +30031,6 @@ dozen
 dozer
 dozy
 dpt.
-dr
 dr.
 drab
 drabbet
@@ -33263,7 +33074,6 @@ eyre
 eyrie
 eyrir
 f
-f.
 f.c.
 f.o.b.
 f.p.
@@ -35576,7 +35386,6 @@ foxing
 foxtail
 foxy
 foyer
-fp
 fr.
 fracas
 fraction
@@ -36170,7 +35979,6 @@ fyke
 fylfot
 fyrd
 g
-g.
 g.u.
 g.v.
 gab
@@ -38443,7 +38251,6 @@ gyrus
 gyve
 h
 h'm
-h.
 h.a.
 h.s.
 ha
@@ -39732,7 +39539,6 @@ hexylresorcinol
 hey
 heyday
 hf.
-hg
 hgt.
 hhd
 hi
@@ -39987,8 +39793,6 @@ hitherto
 hitherward
 hive
 hives
-hl
-hm
 ho
 hoactzin
 hoagy
@@ -43982,7 +43786,6 @@ juxtapose
 juxtaposition
 k
 kHz
-kV
 kWh
 ka
 kab
@@ -44079,8 +43882,6 @@ kayak
 kayo
 kazachok
 kazoo
-kb
-kc
 kcal
 kea
 kebab
@@ -44202,7 +44003,6 @@ keynote address
 keystone
 keystroke
 keyway
-kg
 kg.
 khaddar
 khaki
@@ -44399,7 +44199,6 @@ klong
 kloof
 klutz
 klystron
-km
 km.
 kn.
 knack
@@ -44572,7 +44371,6 @@ kylix
 kymograph
 kyphosis
 l
-l.
 l.c.
 l.h.
 l.t.
@@ -46112,8 +45910,6 @@ lizard
 ll.
 llama
 llano
-lm
-ln
 lo
 loach
 load
@@ -46730,7 +46526,6 @@ luxuriate
 luxurious
 luxury
 lv.
-lx
 lycanthrope
 lycanthropy
 lyceum
@@ -46789,7 +46584,6 @@ lythraceous
 lytic
 lytta
 m
-m.
 m.m.f.
 m.o.
 m.p.
@@ -47710,7 +47504,6 @@ mazuma
 mazurka
 mazy
 mazzard
-mb
 me
 mea culpa
 mead
@@ -48306,9 +48099,7 @@ mezzo-relievo
 mezzo-rilievo
 mezzo-soprano
 mezzotint
-mf
 mfd.
-mg
 mho
 mi
 mi.
@@ -48929,9 +48720,7 @@ mizzenmast
 mizzle
 mk.
 mkt.
-ml
 ml.
-mm
 mm.
 mneme
 mnemonic
@@ -49930,7 +49719,6 @@ myxomatosis
 myxomycete
 n
 n'importe
-n.
 n.d.
 n.p.
 n.s.
@@ -52539,7 +52327,6 @@ ozonolysis
 ozonosphere
 p
 p's and q's
-p.
 p.a.
 p.c.
 p.d.
@@ -52548,7 +52335,6 @@ p.p.
 p.q.
 p.r.n.
 p.t.
-pH
 pa
 pabulum
 pace
@@ -54879,7 +54665,6 @@ pizzicato
 pk.
 pkg.
 pkt.
-pl
 pl.
 placable
 placard
@@ -57110,7 +56895,6 @@ psychotic
 psychotomimetic
 psychro-
 psychrometer
-pt
 pt.
 ptarmigan
 pteranodon
@@ -57542,7 +57326,6 @@ pyx
 pyxidium
 pyxie
 q
-q.
 q.e.
 q.t.
 q.v.
@@ -57856,7 +57639,6 @@ quotha
 quotidian
 quotient
 r
-r.
 r.h.
 r.p.s.
 rabato
@@ -60347,7 +60129,6 @@ rye
 rye bread
 rye whiskey
 s
-s.
 s.a.
 s.d.
 s.g.
@@ -62213,7 +61994,6 @@ sexual reproduction
 sexual selection
 sexuality
 sexy
-sf
 sferics
 sfumato
 sgd.
@@ -67175,7 +66955,6 @@ systems design
 systole
 syzygy
 t
-t.
 t.b.
 t.g.
 ta
@@ -72551,7 +72330,6 @@ vulvitis
 vv.
 vying
 w
-w.
 w.b.
 w.c.
 w.f.
@@ -74403,7 +74181,6 @@ yurt
 ywis
 z
 z-axis
-z.
 zabaglione
 zaffer
 zaibatsu

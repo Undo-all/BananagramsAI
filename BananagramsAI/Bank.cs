@@ -40,7 +40,7 @@ namespace BananagramsAI {
         }
 
         public bool HasLetter(char letter) {
-            return this[letter] != 0;
+            return this[letter] > 0;
         }
 
         public void TakeLetter(char letter) {
@@ -68,7 +68,7 @@ namespace BananagramsAI {
 
         public bool TryTakeWord(string word) {
             foreach (char letter in word) {
-                if (this[letter] == 0) {
+                if (this[letter] <= 0) {
                     return false;
                 } else {
                     this[letter] -= 1;

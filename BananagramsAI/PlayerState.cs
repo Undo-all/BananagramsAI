@@ -7,60 +7,88 @@ using System.Threading.Tasks;
 
 namespace BananagramsAI {
     class PlayerState {
-        Bank bank;
-        Grid grid;
+        public Bank Bank { get; private set;  }
+        public Grid Grid { get; private set;  }
 
         public PlayerState(Bank bank, Grid grid) {
-            this.bank = bank;
-            this.grid = grid;
+            this.Bank = bank;
+            this.Grid = grid;
         }
 
-        public void PlaceWordAt(string word, int x, int y, bool vertical) {
-            grid.PlaceWordAt(word, x, y, vertical);
-            bank.TakeWord(word);
+        /*
+        public void PlaceWord(string word, int x, int y, bool vertical) {
+            Grid.PlaceWordAt(word, x, y, vertical);
+            Bank.TakeWord(word);
+        }*/
+
+        public void PlaceWord(Placement placement) {
+            Grid.PlaceWordAt(placement.word, placement.x, placement.y, placement.vertical);
+            Bank = placement.bankAfter;
         }
 
-        public List<Grid> FindMoves(List<string> words) {
-            List<Grid> moves = new List<Grid>();
+        public List<Placement> FindPlacements(List<string> words) {
+            List<Placement> placements = new List<Placement>();
 
-            for (int i = grid.TopRowIndex; i <= grid.BottomRowIndex; ++i) {
-                if (grid.IsEmptyLine(i, false)) continue;
+            if (Grid.IsEmpty()) {
+                foreach (string word in words.Where(w => Bank.IsAvailableWord(w))) {
+                    Bank after = new Bank(Bank);
+                    after.TakeWord(word);
+                    placements.Add(new Placement(word, 0, 0, false, after));
+                    placements.Add(new Placement(word, 0, 0, true, new Bank(after)));
+                }
 
-                Dictionary<int, Regex> regexes = grid.GenerateLineRegexes(i, false);
-                foreach (KeyValuePair<int, Regex> pair in regexes) {
-                    Regex regex = pair.Value;
-                    var placable = words.Where(w => regex.IsMatch(w));
-                    foreach (string word in placable) {
-                        Bank after = new Bank(bank);
+                return placements;
+            }
 
-                        Match test = regex.Match(word);
-                        if (!test.Success) continue;
-                        
-                        CaptureCollection placed = test.Groups[1].Captures;
+            void FindPlacementsOriented(bool vertical) {
+                int start = (vertical ? Grid.LeftmostColumnIndex : Grid.TopRowIndex);
+                int end = (vertical ? Grid.RightmostColumnIndex : Grid.BottomRowIndex);
 
-                        if (placed.Count == 0) continue;
+                for (int i = start; i <= end; ++i) {
+                    if (Grid.IsEmptyLine(i, vertical)) continue;
 
-                        Capture prefix = placed[0];
-                        int xPosition = pair.Key - prefix.Length;
+                    Dictionary<int, Regex> regexes = Grid.GenerateLineRegexes(i, vertical);
+                    foreach (KeyValuePair<int, Regex> pair in regexes) {
+                        Regex regex = pair.Value;
+                        //Console.WriteLine(regex.ToString());
+                        var placable = words.Where(w => w.Length > 1 && regex.IsMatch(w));
+                        foreach (string word in placable) {
+                            Bank after = new Bank(Bank);
 
-                        bool isLegal = true;
-                        foreach (Capture capture in placed) {
-                            if (!after.TryTakeWord(capture.Value)) {
-                                isLegal = false;
-                                break;
+                            Match test = regex.Match(word);
+                            if (!test.Success) continue;
+                            
+                            CaptureCollection placed = test.Groups[1].Captures;
+
+                            if (placed.Count == 0 || (placed[0].Length == 0 && placed[1].Length == 0)) continue;
+
+                            Capture prefix = placed[0];
+                            int position = pair.Key - prefix.Length;
+
+                            bool isLegal = true;
+                            foreach (Capture capture in placed) {
+                                if (!after.TryTakeWord(capture.Value)) {
+                                    isLegal = false;
+                                    break;
+                                }
                             }
-                        }
 
-                        if (isLegal) {
-                            Grid newGrid = new Grid(grid);
-                            newGrid.PlaceWordAt(word, xPosition, i, false);
-                            moves.Add(newGrid);
+                            if (isLegal) {
+                                if (vertical) {
+                                    placements.Add(new Placement(word, i, position, vertical, after));
+                                } else {
+                                    placements.Add(new Placement(word, position, i, vertical, after));
+                                }
+                            }
                         }
                     }
                 }
             }
 
-            return moves;
+            FindPlacementsOriented(false);
+            FindPlacementsOriented(true);
+
+            return placements;
         }
     }
 }
