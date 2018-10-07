@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Diagnostics;
+
+using Priority_Queue; // C'mon dude, don't have underscores in namespaces.
 
 namespace BananagramsAI {
     class Program {
@@ -36,29 +40,127 @@ namespace BananagramsAI {
             var query = from line in File.ReadLines(@"C:\Users\undoall\source\repos\BananagramsAI\BananagramsAI\words.txt")
                         where line.All(c => "abcdefghijklmnopqrstuvwxyz".Contains(c))
                         select line;
-            List<String> words = query.ToList();
+            List<string> words = query.ToList();
 
-            Random rng = new Random();
-            int[] temp = new int[26];
-            for (int i = 0; i < 21; ++i) {
-                temp[rng.Next(0, 26)] += 1;
+            float Heuristic(SearchNode node) {
+                return node.State.Bank.Size;
             }
 
+            /*
+            PlayerState AStarSearch(PlayerState start) {
+                SimplePriorityQueue<SearchNode> queue = new SimplePriorityQueue<SearchNode>();
+                Dictionary<SearchNode, SearchNode> cameFrom = new Dictionary<SearchNode, SearchNode>();
+
+                queue.Enqueue(new SearchNode(start, words.Where(w => w.Any(c => bank.HasLetter(c))).ToList(), 0), 21);
+                for (; ; ) {
+                    if (queue.Count >= 500000) {
+                        return null;
+                    }
+
+                    SearchNode node = queue.Dequeue();
+
+                    Console.Clear();
+                    node.State.Grid.Display();
+                    Console.WriteLine("Got node with bank size " + node.State.Bank.Size + " and " + node.Words.Count + " possible words");
+
+                    node.ExpandChildren();
+                    foreach (SearchNode child in node.Children) {
+                        if (child.State.Bank.Size == 0) {
+                            return child.State;
+                        }
+
+                        int movesToReach = node.MovesToReach + 1;
+                        if (!queue.Contains(child) || movesToReach < child.MovesToReach) {
+                            cameFrom[child] = node;
+                            child.MovesToReach = movesToReach;
+                            float priority = child.MovesToReach*0 + Heuristic(child);
+                            if (!queue.Contains(child)) {
+                                queue.Enqueue(child, priority);
+                            } else {
+                                queue.UpdatePriority(child, priority);
+                            }
+                        }
+                    }
+                }
+            }
+            */
+
+            /*
+            PlayerState BestFirstSearch(PlayerState start) {
+                SimplePriorityQueue<SearchNode> queue = new SimplePriorityQueue<SearchNode>();
+
+                queue.Enqueue(new SearchNode(start, words.Where(w => w.Any(c => bank.HasLetter(c))).ToList(), 0), 21);
+                for (; ; ) {
+                    if (queue.Count >= 500000) {
+                        return null;
+                    }
+
+                    SearchNode node = queue.Dequeue();
+
+                    Console.Clear();
+                    node.State.Grid.Display();
+                    Console.WriteLine("Got node with bank size " + node.State.Bank.Size + " and " + node.Words.Count + " possible words");
+
+                    foreach (SearchNode child in node.FindChildren()) {
+                        if (child.State.Bank.Size == 0) {
+                            return child.State;
+                        }
+
+                        queue.Enqueue(child, Heuristic(child));
+                    }
+                }
+            }
+            */
+
+            Random rng = new Random();
+            int[] temp = Enumerable.Repeat(1, 26).ToArray();
 
             Bank bank = new Bank(temp);
-
             Grid grid = new Grid();
 
+            grid.PlaceWordAt("placed", 0, 0, false);
+            grid.PlaceWordAt("loft", 1, 0, true);
+            grid.PlaceWordAt("far", 1, 2, false);
+            grid.Display();
+
+            PlayerState state = new PlayerState(bank, grid);
+
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+
+            for (int i = 0; i < 10; ++i) {
+                List<Placement> placements = state.FindPlacements(words);
+                //Console.WriteLine(placements[rng.Next(0, placements.Count)].Word);
+            }
+
+            sw.Stop();
+
+            Console.WriteLine("Time elapsed: {0}", sw.Elapsed);
+            
+            /*
+            Console.Write("Bank: ");
+            for (char c = 'a'; c <= 'z'; ++c) {
+                for (int i = 0; i < bank.letters[c - 'a']; ++i) {
+                    Console.Write(c);
+                }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Searching for solution...");
+            PlayerState solution = BestFirstSearch(new PlayerState(bank, grid));
+            Console.WriteLine("Solution Found!");
+            solution.Grid.Display();
+            */
+
+            /*
             PlayerState state = new PlayerState(bank, grid);
             List<Placement> placements;
             for (int i = 0; i < 20; ++i) {
                 Console.WriteLine();
-                placements = state.FindPlacements(words);
+                placements = state.FindPlacements(wordsBlock);
                 Console.Write("From " + placements.Count + " possible moves, placing: ");
-
-                int maxLength = placements.Max(w => w.word.Length);
-                var longs = placements.Where(w => w.word.Length == maxLength).ToList();
-                Placement placement = longs[rng.Next(0, longs.Count)];
+                Placement placement = placements[rng.Next(0, placements.Count)];
 
 
                 Console.WriteLine(placement.word);
@@ -71,6 +173,7 @@ namespace BananagramsAI {
                 }
                 Console.WriteLine();
             }
+            */
         }
     }
 }

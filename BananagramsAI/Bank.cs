@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BananagramsAI {
     class Bank {
-        readonly int[] letters = new int[26];
-        readonly static double ExactWeight = 0.5;
+        readonly public int[] letters = new int[26];
+        readonly static float ExactWeight = 0.5f;
 
         public Bank() {
             //Letters = new int[26];
@@ -44,11 +44,15 @@ namespace BananagramsAI {
         }
 
         public void TakeLetter(char letter) {
-            this[letter] -= 1;
+            if (this[letter] == 0) {
+                throw new Exception();
+            } else {
+                this[letter] -= 1;
+            }
         }
 
         public bool TryTakeLetter(char letter) {
-            if (this[letter] == 0) {
+            if (this[letter] <= 0) {
                 return false;
             } else {
                 this[letter] -= 1;
@@ -57,7 +61,14 @@ namespace BananagramsAI {
         }
 
         public bool IsAvailableWord(string word) {
-            return word.All(c => HasLetter(c));
+            Bank after = new Bank(this);
+            foreach (char c in word) {
+                if (!after.TryTakeLetter(c)) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public void TakeWord(string word) {
@@ -78,7 +89,7 @@ namespace BananagramsAI {
             return true;
         }
 
-        public double CalculateValue(List<string> words) {
+        public float CalculateValue(List<string> words) {
             int exacts = 0;
             int exactCandidates = 0;
             int inexacts = 0;
@@ -123,9 +134,9 @@ namespace BananagramsAI {
                 }
             }
 
-            double exactFreq = exactCandidates == 0 ? 0 : (double)exacts / exactCandidates;
-            double inexactFreq = inexactCandidates == 0 ? 0 : (double)inexacts / inexactCandidates;
-            double value = exactFreq * ExactWeight + inexactFreq * (1 - ExactWeight);
+            float exactFreq = exactCandidates == 0 ? 0 : (float)exacts / exactCandidates;
+            float inexactFreq = inexactCandidates == 0 ? 0 : (float)inexacts / inexactCandidates;
+            float value = exactFreq * ExactWeight + inexactFreq * (1 - ExactWeight);
             return value;
         }
     }

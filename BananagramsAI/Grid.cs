@@ -171,7 +171,7 @@ namespace BananagramsAI {
             return String.Format("{0}(({1})({2}))", anchor, goOn, endEarly);
         }
 
-        public Dictionary<int, Regex> GenerateLineRegexes(int lineIndex, bool column) {
+        public Dictionary<int, (Regex, int)> GenerateLineRegexes(int lineIndex, bool column) {
             Dictionary<int, Line> axis = (column ? columns : rows);
             Line line = axis[lineIndex];
             Dictionary<int, Regex> regexes = new Dictionary<int, Regex>();
@@ -194,6 +194,7 @@ namespace BananagramsAI {
 
             for (int i = line.BackIndex; i <= line.FrontIndex; ++i) {
                 if (!line.IsEmptyAt(i)) {
+
                     string prefix;
                     if (last == int.MinValue) {
                         prefix = "(?<1>^.*)";
@@ -203,7 +204,7 @@ namespace BananagramsAI {
 
                     string regexFrom = GenerateLineRegexFrom(lineIndex, i, column, out last);
                     string regexString = prefix + regexFrom;
-                    Regex regex = new Regex(regexString, RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
+                    Regex regex = new Regex(regexString, RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.ExplicitCapture);
                     regexes[i] = regex;
                     i = last - 1;
                 }
