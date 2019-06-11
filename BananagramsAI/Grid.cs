@@ -103,113 +103,72 @@ namespace BananagramsAI {
         public bool IsEmptyLine(int lineIndex, bool column) {
             return (column ? columns : rows)[lineIndex].IsEmpty();
         }
-        
-        string GenerateLineRegexFrom(int lineIndex, int start, bool column, out int last) {
-            Line line;
-            Line[] neighbors = new Line[2];
-            if (column) {
-                if (!columns.TryGetValue(lineIndex, out line)) throw new Exception();
-                columns.TryGetValue(lineIndex - 1, out neighbors[0]);
-                columns.TryGetValue(lineIndex + 1, out neighbors[1]);
-            } else {
-                if (!rows.TryGetValue(lineIndex, out line)) throw new Exception();
-                rows.TryGetValue(lineIndex - 1, out neighbors[0]);
-                rows.TryGetValue(lineIndex + 1, out neighbors[1]);
-            }
 
-            if (neighbors[0] == null) neighbors[0] = new Line();
-            if (neighbors[1] == null) neighbors[1] = new Line();
-
-            string anchor = String.Format("{0}", line[start]);
-
-            if (!line.IsEmptyAt(start + 1)) {
-                while (!line.IsEmptyAt(++start)) {
-                    anchor = anchor + line[start];
-                }
-            } else {
-                start += 1;
-            }
-
-            last = start + 1;
-
-            int next = -1;
-            for (int i = start; i <= line.FrontIndex; ++i) {
-                if (!line.IsEmptyAt(i)) {
-                    next = i;
-                    break;
-                } else if (!(neighbors[0].IsEmptyAt(i) && neighbors[1].IsEmptyAt(i))) {
-                    last = i + 1;
-                    return String.Format("{0}(?<1>.{{0,{1}}})$", anchor, i - start - 1);
-                }
-            }
-
-            if (next == -1) {
-                int upTo = int.MaxValue; 
-                int end = Math.Max(neighbors[0].FrontIndex, neighbors[1].FrontIndex);
-                for (int i = line.FrontIndex + 1; i <= end; ++i) {
-                    if (!(neighbors[0].IsEmptyAt(i) && neighbors[1].IsEmptyAt(i))) {
-                        upTo = i;
-                        break;
-                    } 
-                }
-
-                string suffix;
-                if (upTo == int.MaxValue) {
-                    suffix = "(?<1>.*)$";
-                } else {
-                    suffix = String.Format("(?<1>.{{0,{0}}})$", upTo - start);
-                }
-
-                return anchor + suffix;
-            }
-            
-            int leeway = next - lineIndex - 1;
-
-            string endEarly = String.Format("(?<1>.{{0,{0}}})$", leeway - 1);
-            string fromNext = GenerateLineRegexFrom(lineIndex, next, column, out int whoCares);
-            string goOn = String.Format("(?<1>.{{{0}}})({1})", leeway, fromNext);
-            return String.Format("{0}(({1})|({2}))", anchor, goOn, endEarly);
-        }
-
-        public Dictionary<int, PlacementRequirements> GenerateLineRegexes(int lineIndex, bool column) {
-            Dictionary<int, Line> axis = (column ? columns : rows);
+        public IEnumerable<Placement> FindLinePlacementsFrom(int lineIndex, int start, int frontLeeway, bool vertical, Bank startingBank, Gaddag words) {
+            Dictionary<int, Line> axis = vertical ? columns : rows;
             Line line = axis[lineIndex];
-            Dictionary<int, PlacementRequirements> requirements = new Dictionary<int, PlacementRequirements>();
 
             Line[] neighbors = new Line[2];
             neighbors[0] = GetLineLazy(axis, lineIndex - 1);
             neighbors[1] = GetLineLazy(axis, lineIndex + 1);
 
-            int start = Math.Min(neighbors[0].BackIndex, neighbors[1].BackIndex);
-            int last = int.MinValue;
-            for (int i = start; i <= line.FrontIndex; ++i) {
-                if (!line.IsEmptyAt(i)) {
-                    start = i;
-                    break;
-                } else if (!(neighbors[0].IsEmptyAt(i) && neighbors[1].IsEmptyAt(i))) {
-                    last = i + 1;
-                    start = last;
-                }
-            }
+            Stack<(Gaddag, int, Bank)> nodes = new Stack<(Gaddag, int, Bank)>();
+            nodes.Push((words, start, startingBank));
 
-            for (int i = line.BackIndex; i <= line.FrontIndex; ++i) {
-                if (!line.IsEmptyAt(i)) {
-                    int backLeeway;
-                    if (last == int.MinValue) {
-                        backLeeway = int.MaxValue;
-                    } else {
-                        backLeeway = i - last;
+            while (nodes.Count != 0) {
+                (Gaddag node, int index, Bank bank) = nodes.Pop();
+
+                if (line.IsEmptyAt(index)) {
+                    if (!(neighbors[0].IsEmptyAt(index) && neighbors[1].IsEmptyAt(index))) continue;
+                    for (char c = 'a'; c <= 'z'; ++c) {
+                        if (!bank.HasLetter(c) || node[c] == null) {
+                            continue;
+                        }
+
+                        Bank after = new Bank(bank);
+                        after.TakeLetter(c);
+
+                        nodes.Push((node[c], index - 1, after));
                     }
 
-                    string regexFrom = GenerateLineRegexFrom(lineIndex, i, column, out last);
-                    string regexString = regexFrom;
-                    Regex regex = new Regex(regexString, RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture);
-                    requirements[i] = new PlacementRequirements(regex, backLeeway);
-                    i = last - 1;
+                    if (node['{'] != null) {
+                        foreach (Gaddag word in node['{'].FindAllWords(bank)) {
+                            if (word.word.Length - word.reversePoint >= frontLeeway) continue;
+                            Bank after = new Bank(bank);
+                            after.TakeWord(word.word.Substring(word.reversePoint+1));
+                            if (Enumerable.SequenceEqual(startingBank.letters, after.letters)) continue;
+                            yield return new Placement(word.word, lineIndex, start - word.reversePoint, vertical, after);
+                        }
+                    }
+                } else {
+                    char c = line[index];
+                    if (node[c] != null) {
+                        nodes.Push((node[c], index - 1, bank));
+                    }
                 }
             }
+        }
+        
+        public IEnumerable<Placement> FindLinePlacements(int lineIndex, bool vertical, Bank bank, Gaddag words) {
+            Dictionary<int, Line> axis = vertical ? columns : rows;
+            Line line = axis[lineIndex];
+            Line[] neighbors = new Line[2];
+            neighbors[0] = GetLineLazy(axis, lineIndex - 1);
+            neighbors[1] = GetLineLazy(axis, lineIndex + 1);
 
-            return requirements;
-        }  
+            int last = int.MaxValue;
+
+            for (int i = line.FrontIndex; i >= line.BackIndex; --i) {
+                if (!line.IsEmptyAt(i)) {
+                    foreach (Placement placement in FindLinePlacementsFrom(lineIndex, i, last - i, vertical, bank, words)) {
+                        yield return placement;
+                    }
+
+                    last = i - 1;
+                } else if (!(neighbors[0].IsEmptyAt(i) && neighbors[1].IsEmptyAt(i))) {
+                    last = i;
+                }
+            }
+        }
     }
 }

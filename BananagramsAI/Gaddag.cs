@@ -8,24 +8,51 @@ namespace BananagramsAI {
     class Gaddag {
         public bool isEndOfWord;
         public Gaddag[] children;
+        public string word;
+        public int reversePoint;
 
         public Gaddag(bool isEndOfWord) {
             children = new Gaddag[27];
             this.isEndOfWord = isEndOfWord;
         }
-        
-        public IEnumerable<string> FindAllWords() {
+
+        public Gaddag this[char c] {
+            get {
+                return children[c - 'a'];
+            }
+        }
+
+        public IEnumerable<Gaddag> FindAllWords() {
             if (isEndOfWord)
-                yield return "";
+                yield return this;
 
             for (int i = 0; i < 27; ++i) {
                 if (children[i] == null) continue;
+                
+                foreach (Gaddag word in children[i].FindAllWords()) {
+                    yield return word;
+                }
+            }
+        }
+        
+        public IEnumerable<Gaddag> FindAllWords(Bank bank) {
+            if (isEndOfWord)
+                yield return this;
 
-                char c = (char)(i + 'a');
-                var child = children[i].FindAllWords();
-                foreach (string word in child) {
-                    yield return (c + word);
-                } 
+            for (char c = 'a'; c <= 'z'; ++c) {
+                if (!bank.HasLetter(c) || this[c] == null) continue;
+
+                Bank after = new Bank(bank);
+                after.TakeLetter(c);
+                foreach (Gaddag word in this[c].FindAllWords(after)) {
+                    yield return word;
+                }
+            }
+
+            if (this['{'] != null) {
+                foreach (Gaddag word in this['{'].FindAllWords(bank)) {
+                    yield return word;
+                }
             }
         }
 
@@ -46,7 +73,7 @@ namespace BananagramsAI {
                 int index = split - i;
                 InsertLetter(word[index]);
             }
-
+        
             InsertLetter('{'); // Represents a line-reversal. Equal to 'z' + 1
             
             for (int i = split + 1; i < word.Length; ++i) {
@@ -54,6 +81,8 @@ namespace BananagramsAI {
             }
 
             iter.isEndOfWord = true;
+            iter.word = word;
+            iter.reversePoint = split;
         }
 
         public void InsertWord(string word) {
